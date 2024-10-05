@@ -49,11 +49,35 @@ const Btn2 = ({ children }: BTNProps) => (
 
 function ComponentPage() {
   return (
-    <main className="flex flex-col justify-center items-center h-screen space-y-6">
-      <div className="flex gap-5">
+    <main className="flex flex-col justify-center items-center h-screen space-y-6 relative overflow-hidden">
+      <div className="flex gap-5 z-10">
         <Btn1>Play now</Btn1>
         <Btn2>Level Up!</Btn2>
       </div>
+      {[...Array(10)].map((_, index) => (
+        <motion.img
+          key={index}
+          src="/bubble.png"
+          alt="Bubble"
+          className="absolute"
+          style={{
+            width: Math.random() * 100 + 50,
+            height: 'auto',
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            y: [0, -20, 0],
+            x: [0, Math.random() * 10 - 5, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: Math.random() * 3 + 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
     </main>
   );
 }
