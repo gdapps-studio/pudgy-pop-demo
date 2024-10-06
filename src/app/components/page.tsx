@@ -41,16 +41,9 @@ export default function ComponentPage() {
           <Btn4>Button 4</Btn4>
         </div>
       </Section>
-
       <Section title="Member Cards">
         <MemberCard />
       </Section>
-
-      {/* <div className="-z-50">
-        {[...Array(40)].map((_, index) => (
-          <Bubble key={index} />
-        ))}
-      </div> */}
     </main>
   );
 }
