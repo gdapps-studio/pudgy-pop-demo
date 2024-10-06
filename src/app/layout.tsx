@@ -26,19 +26,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html className="min-w-[375px] scroll-smooth" lang="en">
       <body className={`relative ${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Image
-          className="-z-40"
-          src="/bg.png"
-          alt="Background"
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-sky-400 to-blue-300 -z-50"></div>
-        {children}
+        <div className="min-h-dvh">
+          <Image
+            className="-z-40"
+            src="/bg.png"
+            alt="Background"
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-sky-400 to-blue-300 -z-50"></div>
+          {children}
+        </div>
       </body>
     </html>
   );

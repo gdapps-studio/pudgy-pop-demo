@@ -33,7 +33,7 @@ const Section = ({ children, title }: { children: ReactNode; title: string | und
 
 export default function ComponentPage() {
   return (
-    <main className="flex flex-col justify-center items-center space-y-6">
+    <main className="py-5 md:py-20 flex flex-col justify-center items-center space-y-6">
       <Section title="Button Variations">
         <div className="flex flex-col md:flex-row gap-5">
           <Btn1>Button 1</Btn1>
