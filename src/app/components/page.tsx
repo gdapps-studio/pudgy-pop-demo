@@ -2,7 +2,6 @@ import { Btn1 } from '@/components/btn1';
 import { Btn2 } from '@/components/btn2';
 import { Btn3D } from '@/components/btn3';
 import { Btn4 } from '@/components/btn4';
-import { PinguineBubble } from '@/components/pinguine-bubble';
 import { Medal } from 'lucide-react';
 import Image from 'next/image';
 import { ReactNode } from 'react';
@@ -47,9 +46,6 @@ export default function ComponentPage() {
         <MemberCard />
       </Section>
 
-      <Section title="Bubble Components">
-        <PinguineBubble />
-      </Section>
       {/* <div className="-z-50">
         {[...Array(40)].map((_, index) => (
           <Bubble key={index} />
