@@ -2,7 +2,7 @@ import { Btn1 } from '@/components/btn1';
 import { Btn2 } from '@/components/btn2';
 import { Btn3D } from '@/components/btn3';
 import { Btn4 } from '@/components/btn4';
-import { Bubble } from '@/components/bubble';
+import { PinguineBubble } from '@/components/pinguine-bubble';
 import { Medal } from 'lucide-react';
 import Image from 'next/image';
 import { ReactNode } from 'react';
@@ -11,7 +11,7 @@ const MemberCard = () => (
   <div className="flex items-center justify-between bg-white border border-gray-200 rounded-full p-1 pr-4 shadow-sm max-w-xs w-full hover:scale-105 transition-transform duration-300 ease-in-out">
     <div className="relative">
       <div className="w-16 h-16 rounded-full bg-sky-100 flex items-center justify-center overflow-hidden">
-        <Image src="/pinguine.png" alt="Profile avatar" width={48} height={48} className="w-12 h-12" />
+        <Image src="/pinguine-avatar.png" alt="Profile avatar" width={48} height={48} className="w-12 h-12" />
       </div>
       <div className="absolute -top-1 -left-1 bg-yellow-400 rounded-full p-1">
         <Medal className="w-4 h-4 text-white" />
@@ -47,11 +47,14 @@ export default function ComponentPage() {
         <MemberCard />
       </Section>
 
-      <div className="-z-50">
+      <Section title="Bubble Components">
+        <PinguineBubble />
+      </Section>
+      {/* <div className="-z-50">
         {[...Array(40)].map((_, index) => (
           <Bubble key={index} />
         ))}
-      </div>
+      </div> */}
     </main>
   );
 }
