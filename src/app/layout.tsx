@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import Image from 'next/image';
 
 import './globals.css';
 
@@ -26,9 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[url('/bg.png')] bg-cover bg-center`}
-      >
+      <body className={`relative ${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Image src="/bg.png" alt="Background" layout="fill" objectFit="cover" quality={100} priority />
+        <div className="absolute inset-0 bg-gradient-to-b from-sky-400 to-blue-300 -z-50"></div>
         {children}
       </body>
     </html>
