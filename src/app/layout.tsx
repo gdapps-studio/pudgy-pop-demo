@@ -28,7 +28,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`relative ${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Image src="/bg.png" alt="Background" layout="fill" objectFit="cover" quality={100} priority />
+        <Image
+          className="-z-40"
+          src="/bg.png"
+          alt="Background"
+          layout="fill"
+          objectFit="cover"
+          quality={100}
+          priority
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-sky-400 to-blue-300 -z-50"></div>
         {children}
       </body>
