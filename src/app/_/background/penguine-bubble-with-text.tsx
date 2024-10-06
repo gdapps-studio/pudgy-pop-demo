@@ -1,6 +1,9 @@
+'use client';
+
 import penguineBubbleSvg from '@/assets/penguine-bubble.svg';
 import penguineOutlineSvg from '@/assets/penguine-outline.svg';
 import pudgyPopSvg from '@/assets/pudgy-pop.svg';
+import { animated, config, useSpring } from '@react-spring/web';
 import Image from 'next/image';
 
 const PenguineOutline = () => (
@@ -25,11 +28,33 @@ const PudgyPopText = () => (
 
 const Bubble = () => <Image src={penguineBubbleSvg} alt="Bubble" quality={100} />;
 
-export const PenguineBubbleWithText = () => (
-  <div className="relative w-full h-96 mx-auto flex items-center justify-center">
-    <Bubble />
-    <PenguineOutline />
-    <Penguine />
-    <PudgyPopText />
-  </div>
-);
+export const PenguineBubbleWithText = () => {
+  const fadeInAnim = useSpring({
+    from: { opacity: 0, transform: 'translateY(-20px)' },
+    to: { opacity: 1, transform: 'translateY(0)' },
+    config: config.wobbly,
+  });
+
+  const floatAnim = useSpring({
+    from: { transform: 'translateY(0px)' },
+    to: async (next) => {
+      while (true) {
+        await next({ transform: 'translateY(-10px)' });
+        await next({ transform: 'translateY(0px)' });
+      }
+    },
+    config: { duration: 2000 },
+    delay: 1000, // Start floating after fade-in completes
+  });
+
+  return (
+    <animated.div style={fadeInAnim}>
+      <animated.div style={floatAnim} className="relative w-full h-96 mx-auto flex items-center justify-center">
+        <Bubble />
+        <PenguineOutline />
+        <Penguine />
+        <PudgyPopText />
+      </animated.div>
+    </animated.div>
+  );
+};
