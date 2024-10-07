@@ -20,6 +20,7 @@ const DialogDemo = () => {
             setOpen(false);
           }
         }}
+        onClick={() => setOpen(false)}
         className="flex py-6 items-center justify-center cursor-pointer bg-emerald-500 font-bold text-white text-2xl"
       >
         Click on Enter or Start
