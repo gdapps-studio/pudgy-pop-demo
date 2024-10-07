@@ -7,8 +7,11 @@ import pudgyPopSvg from '@/assets/pudgy-pop.svg';
 import { animated } from '@react-spring/web';
 import Image from 'next/image';
 
+import { BubbleWithElement } from './bubble-with-element';
 import './float.css';
 import { useFadeIn } from './use-fade-in';
+
+const SIZES = '(min-width: 66em) 33vw, (min-width: 44em) 50vw, 100vw';
 
 const Penguine = () => {
   const fadeInAnim = useFadeIn();
@@ -19,7 +22,7 @@ const Penguine = () => {
         <Image src={penguineOutlineSvg} alt="Penguine outline" quality={100} />
       </div>
       <div className="relative w-[115.78px] h-[203.3px]">
-        <Image priority src="/pinguine.webp" quality={100} alt="Pinguine bubble" fill />
+        <Image priority src="/pinguine.webp" sizes={SIZES} quality={100} alt="Pinguine bubble" fill />
       </div>
       <div className="absolute bottom-[46px] left-1/2 transform -translate-x-1/2 flex justify-center items-center z-20">
         <PudgyPopText />
@@ -39,30 +42,24 @@ const PudgyPopText = () => (
   </div>
 );
 
-const sound = new Howl({
-  src: ['/audios/whoosh.mp3'],
-  html5: true,
-});
-
 export const GameElements = () => {
   return (
     <div className="relative max-w-[700px] mx-auto w-full h-96">
-      <button
-        className="absolute top-4 left-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() => {
-          sound.play();
-        }}
-      >
-        Play Sound
-      </button>
       <Penguine />
-      {/* <BubbleWithElement
+      <BubbleWithElement
         delay={100}
         wrapperClassName="top-2 left-[140px] animate-float-3s"
         bubbleWrapperClassName="w-[116px] h-[115px]"
         element={
           <div className="relative w-[91px] h-[91px]">
-            <Image priority src="/game-elements/booster-shark.png" quality={100} alt="Booster Shark" fill />
+            <Image
+              priority
+              src="/game-elements/booster-shark.png"
+              sizes={SIZES}
+              quality={100}
+              alt="Booster Shark"
+              fill
+            />
           </div>
         }
       />
@@ -72,7 +69,7 @@ export const GameElements = () => {
         bubbleWrapperClassName="w-[165px] h-[164px]"
         element={
           <div className="relative w-[107px] h-[107px]">
-            <Image priority src="/game-elements/balloons.png" quality={100} alt="Ballons Shark" fill />
+            <Image priority src="/game-elements/balloons.png" sizes={SIZES} quality={100} alt="Ballons Shark" fill />
           </div>
         }
       />
@@ -82,10 +79,17 @@ export const GameElements = () => {
         bubbleWrapperClassName="w-[102px] h-[102px]"
         element={
           <div className="relative w-[70px] h-[71px]">
-            <Image priority src="/game-elements/penguin-hammer.png" quality={100} alt="Hammer Shark" fill />
+            <Image
+              priority
+              src="/game-elements/penguin-hammer.png"
+              sizes={SIZES}
+              quality={100}
+              alt="Hammer Shark"
+              fill
+            />
           </div>
         }
-      /> */}
+      />
       <div className="absolute top-[130px] left-[60px]">
         <div className="reletive w-[84px] h-[84px]">
           <Image src={bubbleExtraSmallSvg} alt="Bubble" quality={100} />

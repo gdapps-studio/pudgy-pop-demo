@@ -10,17 +10,13 @@ const BubbleWithElement = ({
   bubbleWrapperClassName,
   wrapperClassName,
   delay = 0,
-  onComplete,
 }: {
   element: React.ReactNode;
   bubbleWrapperClassName: string;
   wrapperClassName: string;
   delay?: number;
-  onComplete?: () => void;
 }) => {
-  const fadeInAnim = useFadeIn(delay, () => {
-    console.log('onrest');
-  });
+  const fadeInAnim = useFadeIn(delay);
   return (
     <animated.div style={fadeInAnim} className={clsx('absolute', wrapperClassName)}>
       <div className="relative">
