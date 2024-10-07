@@ -74,7 +74,7 @@ export const GameElements = () => {
         }
       />
       <BubbleWithElement
-        delay={1200}
+        delay={900}
         wrapperClassName="bottom-[45px] left-[140px] animate-float-4s"
         bubbleWrapperClassName="w-[102px] h-[102px]"
         element={
