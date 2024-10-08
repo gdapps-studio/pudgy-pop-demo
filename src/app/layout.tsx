@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
-import { BackgroundImage } from './_/background';
+import { Background } from './_/background';
 import { Header } from './_/header';
 import './globals.css';
+import { AudioProvider } from '@/context/audio';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -29,8 +30,10 @@ export default function RootLayout({
   return (
     <html className="min-w-[375px] scroll-smooth" lang="en">
       <body className={`relative ${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Header />
-        <BackgroundImage>{children}</BackgroundImage>
+        <AudioProvider>
+          <Header />
+          <Background>{children}</Background>
+        </AudioProvider>
       </body>
     </html>
   );

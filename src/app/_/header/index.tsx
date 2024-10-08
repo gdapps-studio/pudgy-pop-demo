@@ -1,15 +1,17 @@
 'use client';
 
+import { useAudio } from '@/context/audio';
+import { useAppStore } from '@/store';
 import clsx from 'clsx';
 import { Volume, VolumeX } from 'lucide-react';
-import { useState } from 'react';
 
 export const Header = () => {
-  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const { backgroundMusicEnabled, toggleBackgroundMusic } = useAppStore();
+  const { togglePlay } = useAudio();
 
   const toggleMusic = () => {
-    setIsMusicPlaying(!isMusicPlaying);
-    // TODO: Implement actual music playback logic
+    togglePlay();
+    toggleBackgroundMusic();
   };
 
   return (
@@ -17,7 +19,7 @@ export const Header = () => {
       <nav className="container mx-auto flex items-center justify-between gap-10 py-4 sm:py-5 md:py-6">
         <div></div>
         <button onClick={toggleMusic}>
-          {isMusicPlaying ? (
+          {backgroundMusicEnabled ? (
             <Volume className="cursor-pointer" size={24} />
           ) : (
             <VolumeX className="cursor-pointer" size={24} />

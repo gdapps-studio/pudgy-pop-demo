@@ -1,42 +1,53 @@
 'use client';
 
-import { Dialog, DialogContent } from '@/components/ui/dialog';
-import { useEffect, useState } from 'react';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { useAudio } from '@/context/audio';
+import { useAppStore } from '@/store';
 
 import { BackgroundSkyGradient } from './background-sky-gradient';
 import { GameElements } from './game-elements';
-import { useMusic } from './use-music';
 
-const DialogDemo = () => {
-  const [open, setOpen] = useState(true);
+const MusicIsPlayingDialog = () => {
+  const { backgroundMusicEnabled, musicIsPlayingDialogOpen, toggleMusicIsPlayingDialog } = useAppStore();
+  const { audio } = useAudio();
+
+  const handleMusicOnCloseDialog = () => {
+    if (!backgroundMusicEnabled) audio?.pause();
+    else audio?.play();
+    toggleMusicIsPlayingDialog();
+  };
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={musicIsPlayingDialogOpen && backgroundMusicEnabled}
+      onOpenChange={(open) => {
+        if (!open) handleMusicOnCloseDialog();
+      }}
+    >
       <DialogContent
         aria-label="Click to Start"
         role="button"
         tabIndex={0}
         onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            setOpen(false);
-          }
+          if (e.key === 'Enter' || e.key === ' ') handleMusicOnCloseDialog();
         }}
-        onClick={() => setOpen(false)}
-        className="flex py-6 items-center justify-center cursor-pointer bg-emerald-500 font-bold text-white text-2xl"
+        onClick={() => handleMusicOnCloseDialog()}
+        className="flex items-center justify-center"
       >
-        Click on Enter or Start
+        <DialogTitle className="w-full">
+          <button className="bg-emerald-500 font-bold py-6 w-full px-10 rounded-lg text-white text-2xl">
+            Music is Playing <br />
+            Click on Enter or Start 🎶
+          </button>
+        </DialogTitle>
       </DialogContent>
     </Dialog>
   );
 };
 
-const BackgroundImage = (props: { children: React.ReactNode }) => {
-  const [audio] = useMusic();
-  useEffect(() => {
-    audio?.play();
-  }, [audio]);
+const Background = (props: { children: React.ReactNode }) => {
   return (
     <div className="relative bg-main min-h-dvh bg-[40%_-100px] md:bg-[50%_-150px] bg-[length:300%_100%] md:bg-cover bg-no-repeat">
-      <DialogDemo />
+      <MusicIsPlayingDialog />
       <BackgroundSkyGradient />
       <GameElements />
       {props.children}
@@ -44,4 +55,4 @@ const BackgroundImage = (props: { children: React.ReactNode }) => {
   );
 };
 
-export { BackgroundImage };
+export { Background };
