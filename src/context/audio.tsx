@@ -19,7 +19,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const howl = new Howl({
       src: '/audios/game-music.mp3',
       volume: BACKGROUND_MUSIC_VOLUME,
-      html5: false,
+      html5: true,
       loop: true,
     });
 
